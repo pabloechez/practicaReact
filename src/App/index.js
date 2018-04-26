@@ -1,6 +1,43 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider, injectGlobal } from 'styled-components';
+import { normalize } from 'polished';
 
+import { Header, Content} from './components';
+import theme from '../theme';
+
+
+injectGlobal`
+  ${normalize()}
+`;
+
+injectGlobal`
+  html{
+    box-sizing: border-box;
+    height: 100%;
+  }
+  
+  body{
+     height: 100%;
+     background: #505661;
+  }
+  
+  *,*:before,*:after{
+    box-sizing: inherit;
+  }
+`;
+
+const App = () =>(
+    <BrowserRouter>
+        <ThemeProvider theme={theme}>
+            <div>
+                <Header />
+                <Content />
+            </div>
+        </ThemeProvider>
+    </BrowserRouter>
+);
+/*
 class App extends Component {
 
     constructor(){
@@ -35,8 +72,8 @@ class App extends Component {
     restart(){
         let box = document.querySelectorAll('.square');
         for(let i=0;i<box.length;i++) {
-           box[i].innerText = '';
-           this.gameState.board[i] = '';
+            box[i].innerText = '';
+            this.gameState.board[i] = '';
         }
 
         this.gameState.gameLocked = false;
@@ -122,5 +159,5 @@ class App extends Component {
         );
     }
 }
-
+*/
 export default App;
