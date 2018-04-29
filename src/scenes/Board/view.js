@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { Button } from '../../App/components';
+import { Results } from '../../App/components';
+
 
 const StyledGame = styled.div`
     display: flex;
@@ -56,84 +59,6 @@ const StyledBox = styled.div`
     }
 `;
 
-const StyledReset = styled.button`
-  font-size: 20px;
-  border: none;
-  background-color: ${props => props.theme.colors.tertiary};
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  user-select: none;
-  position: relative;
-  z-index: 1;
-  padding: 0;
-  cursor: pointer;
-  margin-top: 4rem;
-
-  &:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    width: 10px;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(0,10,50,0.2);
-    transition: transform 0.6s cubic-bezier(0,.90,.13,.90);
-    transform: translate3D(0, 0, 0);
-  }
-  
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #08a475;
-    z-index: -1;
-  }
-  
-  &:hover
-    &:before {
-      transform: translate3D(10px, 0, 0);  
-    }
-  }
-
-
-  &:focus, &:active {
-    outline: none;    
-  }
-
-  span {
-    text-transform: uppercase;
-    color: #08a475;
-    padding: 1em 1.5em;
-    background-color: ${props => props.theme.colors.tertiary};
-    display: block;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s cubic-bezier(0,.90,.13,.90);
-    position: relative;
-    font-weight: bold;
-  }
-  
-  &:hover{
-    span {
-      transform: translate3D(0, -10px, 0);
-    }
-  }
-  
-  &:hover{
-    span{
-    background-color: ${props => props.theme.colors.tertiary};
-  }
-`;
-
-const StyledResults = styled.div`
-    margin-top: 4rem;
-    border: 1px;
-`;
-
 const StyledStatus = styled.div`
   min-height: 4rem;
   font-size: 30px;
@@ -156,14 +81,14 @@ const Board = ({winnerLine, dataWinnerX, dataWinnerO, fillBox, restart})=>(
             <StyledBox className="square"  data-square="8" />
         </StyledBoard>
 
-        <StyledReset onClick={restart}>
+        <Button onClick={restart}>
             <span>Resetear</span>
-        </StyledReset>
+        </Button>
 
-        <StyledResults>
-            <div><span>X</span> O</div>
-            {dataWinnerX} - {dataWinnerO}
-        </StyledResults>
+        <Results
+            dataWinnerX ={dataWinnerX}
+            dataWinnerO ={dataWinnerO}
+        />
     </StyledGame>
 );
 

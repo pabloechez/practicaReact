@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import { scoreSaveData } from '../../actions';
 import View from './view';
-
-const WINNER_KEY = 'dataWinner';
-
-if (!localStorage.getItem(WINNER_KEY)) {
-    localStorage.setItem(WINNER_KEY, JSON.stringify({
-        X: 0,
-        O: 0
-    }));
-}
-
-const dataWinnerSrc = localStorage.getItem(WINNER_KEY);
 
 class Board extends Component {
 
@@ -20,7 +11,6 @@ class Board extends Component {
         this.state = {
             winner: undefined,
             winnerLine: undefined,
-            dataWinner: !!dataWinnerSrc && JSON.parse(dataWinnerSrc),
         };
 
         this.gameState = {
@@ -65,6 +55,7 @@ class Board extends Component {
     }
 
     clicked(box){
+
         if(this.gameState.gameEnded || this.gameState.gameLocked) return;
 
         if (this.gameState.board[box.dataset.square] === ''){
@@ -72,7 +63,7 @@ class Board extends Component {
             box.innerText = this.gameState.turn;
             box.classList.add(this.gameState.turn);
             this.gameState.turn = this.gameState.turn === 'X' ? 'O' : 'X';
-            const turn =this.gameState.turn === 'X' ? 'Turno de X' : 'Turno de O';
+            const turn =this.gameState.turn === 'X' ? 'Tu turno' : 'Turno de la máquina';
             this.setState({
                 winnerLine: turn
             });
@@ -81,35 +72,16 @@ class Board extends Component {
 
         let result =  this.checkWinner();
 
-
         if(result === 'X' || result ==='O'){
 
-            this.setState((prevState) => {
+            if(result === 'X'){
+                this.props.scoreSaveData({X:this.props.data[0].X+1,O:this.props.data[0].O});
+            }
 
-                if(result === 'X'){
-                    const  winners = {
-                        X: prevState.dataWinner.X+1,
-                        O: prevState.dataWinner.O
-                    };
-                    localStorage.setItem(WINNER_KEY, JSON.stringify(winners));
+            if(result === 'O'){
+                this.props.scoreSaveData({X:this.props.data[0].X,O:this.props.data[0].O+1});
 
-                    return {
-                        dataWinner:  winners,
-                    };
-                }
-
-                if(result === 'O'){
-                    const  winners = {
-                        X: prevState.dataWinner.X,
-                        O: prevState.dataWinner.O+1
-                    };
-                    localStorage.setItem(WINNER_KEY, JSON.stringify(winners));
-
-                    return {
-                        dataWinner:  winners,
-                    };
-                }
-            });
+            }
         }
 
 
@@ -150,8 +122,8 @@ class Board extends Component {
         return (
             <View
                 winnerLine={this.state.winnerLine}
-                dataWinnerX ={this.state.dataWinner.X}
-                dataWinnerO ={this.state.dataWinner.O}
+                dataWinnerX ={this.props.data[0].X}
+                dataWinnerO ={this.props.data[0].O}
                 fillBox ={(e)=> this.clicked(e.target)}
                 restart ={()=> this.restart()}
             />
@@ -159,4 +131,12 @@ class Board extends Component {
     }
 }
 
-export default Board;
+const mapStateToProps = state => ({
+    data: state.score.data,
+});
+
+const mapDispatchToProps = {
+    scoreSaveData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

@@ -1,0 +1,2 @@
+export const SCORE_SAVING = 'SCORE/SAVING';
+export const SCORE_SAVE_SUCCESS = 'SCORE/SAVE_SUCCESS';

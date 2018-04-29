@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Board } from '../../../scenes';
+import { Board,Score } from '../../../scenes';
 
 const StyledWrapper = styled.div`
   padding: ${props => props.theme.space.md};
@@ -12,6 +12,7 @@ const StyledWrapper = styled.div`
 const Content = () => (
     <StyledWrapper>
         <Route exact path="/" component={Board} />
+        <Route exact path="/resultados" component={Score} />
     </StyledWrapper>
 );
 
