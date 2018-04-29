@@ -2,6 +2,11 @@
 
 Lo primero decir que he tenido que ver algún tutorial que había por internet para ayudarme con la lógica.
 
+Pasos:
+
+1.- yarn install
+
+2.- yarn start
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
