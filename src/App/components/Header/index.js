@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledHeader = styled.header`
@@ -9,13 +10,33 @@ const StyledHeader = styled.header`
   font-weight: bold;
   text-transform: uppercase;
   font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
+  nav{
+    position: absolute;
+    right:2rem;
+  }
 `;
 
-const Header = () =>(
+const StyledTitle = styled.h1`
+    font-size: 30px;
+`;
+
+const Header = ({ children }) =>(
     <StyledHeader>
-        3 en Raya
+        <StyledTitle>3 en Raya</StyledTitle>
+        {children}
     </StyledHeader>
 );
+
+Header.defaultProps = {
+    children: undefined,
+};
+
+Header.propTypes = {
+    children: PropTypes.node,
+};
 
 export default Header;

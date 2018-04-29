@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
-  max-width: 800px;
+  max-width: 240px;
   margin: 4rem auto auto;
   text-align: center;
 `;
@@ -43,13 +43,6 @@ const StyledBody= styled.div`
   span:nth-child(1){
     border-right: 1px solid white;
   }
-`;
-
-const StyledSpan = styled.span`
-  text-align: center;
-  font-size: 20px;
-  color:white;
-  border-bottom: 1px solid white;
 `;
 
 const Results = ({ dataWinnerX, dataWinnerO}) => (

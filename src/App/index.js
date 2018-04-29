@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 import { normalize } from 'polished';
 
-import { Header, Content} from './components';
+import { Header, Content, Menu} from './components';
 import theme from '../theme';
 
 
@@ -33,7 +33,9 @@ const App = () =>(
     <BrowserRouter>
         <ThemeProvider theme={theme}>
             <div>
-                <Header />
+                <Header>
+                    <Menu />
+                </Header>
                 <Content />
             </div>
         </ThemeProvider>

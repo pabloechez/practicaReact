@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Results } from '../../App/components';
+import { Results } from '../../components';
 
 
 class Score extends Component {
