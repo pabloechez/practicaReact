@@ -1,6 +1,6 @@
 ## Práctica React KeepCoding
 
-Lo primero decir que he tenido que ver algún tutorial que había por internet para poder hacer esta práctica, sino no hubiese podido entregar nada.
+Lo primero decir que he tenido que ver algún tutorial que había por internet para ayudarme con la lógica.
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).

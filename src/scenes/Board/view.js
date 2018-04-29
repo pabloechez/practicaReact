@@ -29,6 +29,7 @@ const StyledBox = styled.div`
     font-size: 45px;
     cursor: pointer;
     user-select: none;
+    font-weight: 900;
     
    &:hover{
       background: rgba(255,255,255,0.2);

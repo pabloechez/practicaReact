@@ -12,9 +12,11 @@ injectGlobal`
 `;
 
 injectGlobal`
+ @import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700,900" rel="stylesheet');
   html{
     box-sizing: border-box;
     height: 100%;
+   font-family: 'Nunito', sans-serif;
   }
   
   body{
